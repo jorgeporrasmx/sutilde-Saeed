@@ -1,0 +1,8 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/vqiidokej6l4/public_html
+    - /usr/bin/rsync -av --delete --exclude='.git/' --exclude='.cpanel.yml' ./ "$DEPLOYPATH"/
+    - /usr/bin/find "$DEPLOYPATH" -type d -exec chmod 755 {} \;
+    - /usr/bin/find "$DEPLOYPATH" -type f -exec chmod 644 {} \;
+    - /usr/bin/chmod 644 "$DEPLOYPATH/.htaccess" || true

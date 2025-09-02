@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Digital y Producción Audiovisual - Sutilde</title>
+    <meta name="description" content="Estrategias de marketing digital, producción de video profesional y streaming para empresas. Transformamos tu presencia digital con soluciones creativas y efectivas.">
+    <meta property="og:title" content="Marketing Digital y Producción Audiovisual | Sutilde">
+    <meta property="og:image" content="https://tuservidor.com/preview.jpg">
+    <meta property="og:description" content="Estrategias digitales que impulsan tu marca. Marketing, video y streaming profesional.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <style>
+        .footer-section h4 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section h4.clickable {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section h4.clickable:hover {
+            color: var(--primary-color);
+        }
+
+        .hero-video {
+            position: relative;
+            height: 80vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .hero-video::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .video-showcase {
+            padding: 4rem 0;
+            background: var(--background-color);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            padding-top: 56.25%;
+            background: #f0f0f0;
+        }
+
+        .video-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-info {
+            padding: 1.5rem;
+        }
+
+        .video-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .video-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .streaming-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .streaming-feature {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .streaming-feature i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="assets/logo.png" alt="Sutilde Contenidos" class="logo-img">
+            </div>
+            <nav class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index.html">Automatización</a></li>
+                    <li><a href="blog.html" target="_blank" rel="noopener noreferrer" class="blog-link"><i class="fas fa-newspaper"></i> Lo último en I.A.</a></li>
+                    <li><a href="#contacto" class="contact-button">Contáctanos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-video">
+            <div class="hero-content">
+                <h1>Transformamos tu presencia digital</h1>
+                <p>Estrategias de marketing digital, producción de video y streaming profesional para impulsar tu marca</p>
+                <a href="#contacto" class="cta-button">Inicia tu proyecto</a>
+            </div>
+        </section>
+
+        <section class="communication-strategies">
+            <h2>Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 100 100" class="communication-icon">
+                            <defs>
+                                <linearGradient id="gradientComm" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#B066FF;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#FF3366;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <circle class="pulse-circle" cx="50" cy="50" r="20" fill="none" stroke="url(#gradientComm)" stroke-width="2"/>
+                            <path class="signal-wave" d="M 30,50 Q 50,30 70,50" fill="none" stroke="url(#gradientComm)" stroke-width="2"/>
+                            <path class="signal-wave" d="M 25,50 Q 50,20 75,50" fill="none" stroke="url(#gradientComm)" stroke-width="2"/>
+                            <path class="signal-wave" d="M 20,50 Q 50,10 80,50" fill="none" stroke="url(#gradientComm)" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Comunicación Digital</h3>
+                    <p>Desarrollamos estrategias efectivas para redes sociales y medios digitales</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 100 100" class="community-icon">
+                            <g class="community-group">
+                                <circle class="community-dot" cx="30" cy="50" r="8" fill="url(#gradientAuto)"/>
+                                <circle class="community-dot" cx="50" cy="30" r="8" fill="url(#gradientAuto)"/>
+                                <circle class="community-dot" cx="70" cy="50" r="8" fill="url(#gradientAuto)"/>
+                                <circle class="community-dot" cx="50" cy="70" r="8" fill="url(#gradientAuto)"/>
+                                <line class="connection-line" x1="30" y1="50" x2="50" y2="30" stroke="url(#gradientAuto)" stroke-width="2"/>
+                                <line class="connection-line" x1="50" y1="30" x2="70" y2="50" stroke="url(#gradientAuto)" stroke-width="2"/>
+                                <line class="connection-line" x1="70" y1="50" x2="50" y2="70" stroke="url(#gradientAuto)" stroke-width="2"/>
+                                <line class="connection-line" x1="50" y1="70" x2="30" y2="50" stroke="url(#gradientAuto)" stroke-width="2"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <h3>Gestión de Comunidades</h3>
+                    <p>Construimos y mantenemos comunidades activas alrededor de tu marca</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 100 100" class="content-icon">
+                            <g class="content-group">
+                                <rect class="content-block" x="20" y="20" width="60" height="10" rx="2" fill="url(#gradientAuto)"/>
+                                <rect class="content-block" x="20" y="35" width="40" height="10" rx="2" fill="url(#gradientAuto)"/>
+                                <rect class="content-block" x="20" y="50" width="50" height="10" rx="2" fill="url(#gradientAuto)"/>
+                                <rect class="content-block" x="20" y="65" width="30" height="10" rx="2" fill="url(#gradientAuto)"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <h3>Creación de Contenido</h3>
+                    <p>Generamos contenido relevante y atractivo para tu audiencia</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 100 100" class="analytics-icon">
+                            <g class="analytics-group">
+                                <rect class="analytics-bar" x="20" y="70" width="10" height="10" fill="url(#gradientAuto)"/>
+                                <rect class="analytics-bar" x="40" y="50" width="10" height="30" fill="url(#gradientAuto)"/>
+                                <rect class="analytics-bar" x="60" y="30" width="10" height="50" fill="url(#gradientAuto)"/>
+                                <path class="analytics-line" d="M25,70 L45,50 L65,30" fill="none" stroke="url(#gradientAuto)" stroke-width="2"/>
+                                <circle class="analytics-dot" cx="25" cy="70" r="3" fill="url(#gradientAuto)"/>
+                                <circle class="analytics-dot" cx="45" cy="50" r="3" fill="url(#gradientAuto)"/>
+                                <circle class="analytics-dot" cx="65" cy="30" r="3" fill="url(#gradientAuto)"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <h3>Análisis y Métricas</h3>
+                    <p>Medimos y optimizamos el impacto de tus estrategias de comunicación</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 100 100" class="video-icon">
+                            <defs>
+                                <linearGradient id="gradientVideo" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#B066FF;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#FF3366;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <rect class="video-frame" x="20" y="20" width="60" height="40" rx="4" fill="none" stroke="url(#gradientVideo)" stroke-width="2"/>
+                            <path class="play-button" d="M40,30 L60,40 L40,50 Z" fill="url(#gradientVideo)"/>
+                            <circle class="video-pulse" cx="50" cy="40" r="30" fill="none" stroke="url(#gradientVideo)" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Producción de Video</h3>
+                    <p>Videos profesionales para publicidad, eventos y contenido digital</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 100 100" class="streaming-icon">
+                            <defs>
+                                <linearGradient id="gradientStream" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#B066FF;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#FF3366;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <circle class="stream-circle" cx="50" cy="50" r="30" fill="none" stroke="url(#gradientStream)" stroke-width="2"/>
+                            <path class="stream-wave" d="M30,50 Q50,30 70,50" fill="none" stroke="url(#gradientStream)" stroke-width="2"/>
+                            <path class="stream-wave" d="M25,50 Q50,20 75,50" fill="none" stroke="url(#gradientStream)" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Streaming Profesional</h3>
+                    <p>Transmisiones en vivo de alta calidad para eventos y conferencias</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="video-showcase">
+            <h2>Nuestro Trabajo</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="assets/video1.jpg" alt="Video Corporativo">
+                    </div>
+                    <div class="video-info">
+                        <h3>Video Corporativo</h3>
+                        <p>Presentación de marca y valores empresariales</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="assets/video2.jpg" alt="Evento en Vivo">
+                    </div>
+                    <div class="video-info">
+                        <h3>Evento en Vivo</h3>
+                        <p>Transmisión de conferencia anual</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="assets/video3.jpg" alt="Campaña Digital">
+                    </div>
+                    <div class="video-info">
+                        <h3>Campaña Digital</h3>
+                        <p>Serie de videos para redes sociales</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="streaming-features">
+            <div class="streaming-feature">
+                <i class="fas fa-broadcast-tower"></i>
+                <h3>Transmisión HD</h3>
+                <p>Calidad profesional en cada transmisión</p>
+            </div>
+            <div class="streaming-feature">
+                <i class="fas fa-comments"></i>
+                <h3>Interacción en Vivo</h3>
+                <p>Engagement con tu audiencia en tiempo real</p>
+            </div>
+            <div class="streaming-feature">
+                <i class="fas fa-chart-line"></i>
+                <h3>Analíticas</h3>
+                <p>Métricas detalladas de cada transmisión</p>
+            </div>
+            <div class="streaming-feature">
+                <i class="fas fa-globe"></i>
+                <h3>Alcance Global</h3>
+                <p>Llega a audiencias en todo el mundo</p>
+            </div>
+        </section>
+
+        <section class="process-section">
+            <h2>Nuestro Proceso</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Ideación</h3>
+                    <p>Desarrollamos conceptos creativos alineados con tus objetivos</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-icon">
+                        <i class="fas fa-pencil-ruler"></i>
+                    </div>
+                    <h3>Pre-producción</h3>
+                    <p>Planificación detallada y preparación del proyecto</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Producción</h3>
+                    <p>Ejecución profesional con equipos de última generación</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>Post-producción</h3>
+                    <p>Edición y optimización del contenido final</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="contact">
+            <h2>¿Listo para Impulsar tu Marca?</h2>
+            <p class="contact-subtitle">Agenda una consulta gratuita y descubre cómo podemos ayudarte</p>
+            <div class="contact-form-container">
+                <button id="consultaBtn" class="cta-button contact-redirect-button">
+                    Agenda tu consulta gratuita
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="lines-animation">
+            <svg viewBox="0 0 1000 200" preserveAspectRatio="none">
+                <path d="M0,100 C200,50 400,50 500,100 C600,150 800,150 1000,100" fill="none" stroke="var(--primary-color)" stroke-width="2"/>
+                <path d="M0,100 C200,150 400,150 500,100 C600,50 800,50 1000,100" fill="none" stroke="var(--secondary-color)" stroke-width="2"/>
+            </svg>
+        </div>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Sutilde</h4>
+                <p>Recuperar tu tiempo. Agiliza el proceso.</p>
+            </div>
+            <div class="footer-section">
+                <h4 class="clickable" onclick="openConsultaModal()">Contacto</h4>
+                <p>Email: hola@sutilde.com</p>
+                <p>Tel: (614) 427-3301</p>
+            </div>
+            <div class="footer-section social-links">
+                <a href="https://www.linkedin.com/company/3082853/admin/dashboard/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/SutildeCo" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.facebook.com/Sutilde" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/sutilde/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@SutildeVGL" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.tiktok.com/@sutildecomunicacion" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sutilde. Todos los derechos reservados.</p>
+            <button id="privacyBtn" class="privacy-btn">Aviso de Privacidad</button>
+        </div>
+    </footer>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/526144273301" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Modal de Aviso de Privacidad -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>AVISO DE PRIVACIDAD</h2>
+            <div class="privacy-content">
+                <!-- Contenido del aviso de privacidad -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Consulta -->
+    <div id="consultaModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Agenda tu Consulta Gratuita</h2>
+            <div class="modal-body">
+                <iframe src="https://forms.app/form/66c4dc3c9f387584739fc828?draftId=5728c1f8b852ed" frameborder="0" style="width:100%; height:600px;"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Detector de dispositivos móviles
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    // Configuración base de animaciones
+    const baseConfig = {
+        easing: 'easeOutElastic(1, .5)',
+        duration: isMobile ? 800 : 1500,
+        delay: isMobile ? 100 : 200,
+        autoplay: false
+    };
+
+    // Optimizador de rendimiento
+    const optimizeForMobile = (animation) => {
+        if (isMobile) {
+            animation.duration *= 0.6;  // Reduce la duración
+            animation.delay *= 0.5;     // Reduce el delay
+        }
+        return animation;
+    };
+
+    // Observer para activar animaciones solo cuando son visibles
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = entry.target;
+                if (target.animation && !target.animation.began) {
+                    target.animation.play();
+                }
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '50px'
+    });
+
+    // Comunicación Digital
+    const signalWave = anime({
+        targets: '.signal-wave',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        opacity: [0, isMobile ? 0.7 : 1],
+        scale: [1, isMobile ? 1.05 : 1.1],
+        ...baseConfig
+    });
+
+    const pulseCircle = anime({
+        targets: '.pulse-circle',
+        scale: [0, isMobile ? 1.1 : 1.2],
+        opacity: [0, isMobile ? 0.7 : 1],
+        ...baseConfig
+    });
+
+    // Gestión de Comunidades
+    const communityDots = anime({
+        targets: '.community-dot',
+        scale: [0, 1],
+        opacity: [0, isMobile ? 0.8 : 1],
+        delay: anime.stagger(isMobile ? 80 : 150),
+        ...baseConfig
+    });
+
+    const connectionLines = anime({
+        targets: '.connection-line',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        opacity: [0, isMobile ? 0.6 : 0.8],
+        delay: anime.stagger(isMobile ? 100 : 200),
+        ...baseConfig
+    });
+
+    // Creación de Contenido
+    const contentBlocks = anime({
+        targets: '.content-block',
+        translateX: [isMobile ? -20 : -30, 0],
+        opacity: [0, 1],
+        delay: anime.stagger(isMobile ? 60 : 100),
+        ...baseConfig
+    });
+
+    // Análisis y Métricas
+    const analyticsBars = anime({
+        targets: '.analytics-bar',
+        scaleY: [0, 1],
+        opacity: [0, isMobile ? 0.8 : 1],
+        delay: anime.stagger(isMobile ? 50 : 80),
+        ...baseConfig
+    });
+
+    const analyticsDots = anime({
+        targets: '.analytics-dot',
+        scale: [0, 1],
+        opacity: [0, isMobile ? 0.7 : 0.9],
+        delay: anime.stagger(isMobile ? 70 : 120),
+        ...baseConfig
+    });
+
+    // Video y Streaming
+    const videoFrame = anime({
+        targets: '.video-frame',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        opacity: [0, 1],
+        ...baseConfig
+    });
+
+    const playButton = anime({
+        targets: '.play-button',
+        scale: [0, 1],
+        opacity: [0, 1],
+        delay: 200,
+        ...baseConfig
+    });
+
+    const videoPulse = anime({
+        targets: '.video-pulse',
+        scale: [1, 1.2],
+        opacity: [0.5, 0],
+        duration: 1500,
+        loop: true,
+        ...baseConfig
+    });
+
+    const streamCircle = anime({
+        targets: '.stream-circle',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        opacity: [0, 1],
+        ...baseConfig
+    });
+
+    const streamWave = anime({
+        targets: '.stream-wave',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        opacity: [0, 1],
+        delay: anime.stagger(100),
+        ...baseConfig
+    });
+
+    // Registrar elementos para observación
+    document.querySelectorAll('.service-icon').forEach(icon => {
+        const animations = icon.querySelectorAll('[class*="signal"],[class*="community"],[class*="content"],[class*="analytics"],[class*="video"],[class*="stream"]');
+        animations.forEach(el => {
+            observer.observe(el);
+            // Asignar la animación correspondiente
+            if (el.classList.contains('signal-wave')) el.animation = signalWave;
+            if (el.classList.contains('pulse-circle')) el.animation = pulseCircle;
+            if (el.classList.contains('community-dot')) el.animation = communityDots;
+            if (el.classList.contains('connection-line')) el.animation = connectionLines;
+            if (el.classList.contains('content-block')) el.animation = contentBlocks;
+            if (el.classList.contains('analytics-bar')) el.animation = analyticsBars;
+            if (el.classList.contains('analytics-dot')) el.animation = analyticsDots;
+            if (el.classList.contains('video-frame')) el.animation = videoFrame;
+            if (el.classList.contains('play-button')) el.animation = playButton;
+            if (el.classList.contains('video-pulse')) el.animation = videoPulse;
+            if (el.classList.contains('stream-circle')) el.animation = streamCircle;
+            if (el.classList.contains('stream-wave')) el.animation = streamWave;
+        });
+    });
+
+    // Modal de Privacidad
+    const privacyModal = document.getElementById("privacyModal");
+    const privacyBtn = document.getElementById("privacyBtn");
+    const privacyClose = privacyModal.querySelector(".close");
+
+    privacyBtn.onclick = function() {
+        privacyModal.style.display = "block";
+        document.body.style.overflow = "hidden";
+    }
+
+    privacyClose.onclick = function() {
+        privacyModal.style.display = "none";
+        document.body.style.overflow = "auto";
+    }
+
+    // Modal de Consulta
+    const consultaModal = document.getElementById("consultaModal");
+    const consultaBtn = document.getElementById("consultaBtn");
+    const consultaClose = consultaModal.querySelector(".close");
+
+    function openConsultaModal() {
+        consultaModal.style.display = "block";
+        document.body.style.overflow = "hidden";
+        anime({
+            targets: consultaModal,
+            opacity: [0, 1],
+            scale: [0.9, 1],
+            duration: 300,
+            easing: 'easeOutQuad'
+        });
+    }
+
+    function closeConsultaModal() {
+        anime({
+            targets: consultaModal,
+            opacity: [1, 0],
+            scale: [1, 0.9],
+            duration: 200,
+            easing: 'easeInQuad',
+            complete: function() {
+                consultaModal.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        });
+    }
+
+    consultaBtn.onclick = openConsultaModal;
+    consultaClose.onclick = closeConsultaModal;
+
+    // Cerrar modales al hacer clic fuera
+    window.onclick = function(event) {
+        if (event.target == privacyModal) {
+            privacyModal.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+        if (event.target == consultaModal) {
+            closeConsultaModal();
+        }
+    }
+    </script>
+</body>
+</html> 

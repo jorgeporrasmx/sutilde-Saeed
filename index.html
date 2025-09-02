@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sutilde Comunicación</title>
+    <meta name="description" content="Automatizamos procesos con IA y tecnología no-code para empresas medianas y grandes. Ahorra tiempo, reduce errores y escala tu operación.">
+    <meta property="og:title" content="Automatización empresarial con IA | Sutilde">
+    <meta property="og:image" content="https://tuservidor.com/preview.jpg">
+    <meta property="og:description" content="Escala tu empresa sin sumar personal. Automatización inteligente con resultados en menos de 30 días.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .footer-section h4 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section h4.clickable {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section h4.clickable:hover {
+            color: var(--primary-color);
+        }
+
+        /* Ocultar la página inicialmente */
+        body {
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+
+        body.loaded {
+            opacity: 1;
+        }
+
+        /* Ajustar tamaño del botón de contacto */
+        .contact-button {
+            font-size: 1rem;
+            padding: 0.8rem 1.5rem;
+        }
+
+        /* Estilo para la sección de preguntas clave clickeable */
+        .typing-container {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .typing-container:hover {
+            transform: scale(1.02);
+        }
+
+        /* Ajustes para el caso de éxito */
+        .case-study-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+        }
+
+        .case-study-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .case-study-header h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 2.2rem;
+        }
+
+        .case-study-intro {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .case-study-intro p {
+            color: #000000;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .case-item {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            gap: 0.5rem;
+        }
+
+        .case-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 15px rgba(176, 102, 255, 0.1);
+        }
+
+        .case-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 0.5rem;
+            align-self: center;
+        }
+
+        .case-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+
+        .case-item p {
+            font-size: 0.95rem;
+            line-height: 1.4;
+            color: #000000;
+            margin: 0;
+        }
+
+        .metrics-section {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .metrics-title {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+        }
+
+        .metrics-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .chart-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            height: 100%;
+            padding: 2rem 1rem 4rem;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            gap: 2.5rem;
+        }
+
+        .metric-bar {
+            position: relative;
+            bottom: 0;
+            width: 45px;
+            background: linear-gradient(180deg, #B066FF, #FF3366);
+            border-radius: 6px 6px 0 0;
+            transition: height 1s ease, transform 1s ease;
+            transform-origin: bottom;
+            min-height: 20px;
+        }
+
+        .metric-bar[data-value] {
+            transform: scaleY(0);
+        }
+
+        .metric-bar.animate[data-value] {
+            transform: scaleY(1);
+        }
+
+        .metric-bar[data-value="200"] {
+            height: 100%;
+        }
+
+        .metric-bar[data-value="10"] {
+            height: 10%;
+        }
+
+        .metric-bar[data-value="95"] {
+            height: 47.5%;
+        }
+
+        .metric-bar[data-value="80"] {
+            height: 40%;
+        }
+
+        .metric-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #000000;
+            font-weight: 600;
+            font-size: 1.1rem;
+            white-space: nowrap;
+        }
+
+        .metric-label {
+            position: absolute;
+            bottom: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #000000;
+            line-height: 1.2;
+        }
+
+        .results-summary {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+        }
+
+        .results-summary h3 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .results-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            color: #000000;
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 300px;
+        }
+
+        .results-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .results-list li::before {
+            content: "•";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+
+        .metrics-section h2 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .checkmark-icon {
+            width: 40px;
+            height: 40px;
+            position: relative;
+        }
+
+        .checkmark-box {
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+            animation: drawBox 2s ease forwards;
+        }
+
+        .checkmark-path {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: drawCheck 1s ease forwards 1.5s;
+        }
+
+        @keyframes drawBox {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes drawCheck {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .results-highlights {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            list-style: none;
+            width: 100%;
+            max-width: 400px;
+            text-align: left;
+        }
+
+        .results-highlights li {
+            position: relative;
+            padding: 0.7rem 0.7rem 0.7rem 2.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            color: #333;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            list-style: none;
+            line-height: 1.4;
+        }
+
+        .results-highlights li:last-child {
+            margin-bottom: 0;
+        }
+
+        .results-highlights li::before {
+            content: "✓";
+            position: absolute;
+            left: 0.7rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .results-highlights li strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .results-highlights li:hover {
+            background: rgba(176, 102, 255, 0.05);
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 768px) {
+            .case-study-content {
+                padding: 1rem;
+            }
+
+            .case-study-header h2 {
+                font-size: 1.6rem;
+                text-align: center;
+            }
+
+            .case-study-intro p {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+
+            .chart-container {
+                flex-direction: column;
+                align-items: stretch;
+                height: auto;
+                gap: 2.5rem;
+                padding: 1.5rem;
+                background: rgba(0, 0, 0, 0.05);
+                border-radius: 12px;
+                width: 100%;
+                box-sizing: border-box;
+                overflow: hidden;
+            }
+
+            .metric-bar {
+                width: 100% !important;
+                height: 40px !important;
+                background: linear-gradient(90deg, #B066FF, #FF3366);
+                border-radius: 6px;
+                position: relative;
+                margin-bottom: 2rem;
+            }
+
+            .metric-bar[data-value="200"] {
+                width: 100% !important;
+            }
+
+            .metric-bar[data-value="200"] .metric-value {
+                right: auto;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: white;
+                font-weight: 700;
+                font-size: 1.1rem;
+                text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            }
+
+            .metric-bar[data-value="10"] {
+                width: 8% !important;
+            }
+
+            .metric-bar[data-value="95"] {
+                width: 47.5% !important;
+            }
+
+            .metric-bar[data-value="80"] {
+                width: 40% !important;
+            }
+
+            .metric-value {
+                position: absolute;
+                right: -40px;
+                left: auto;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #000000;
+                font-weight: 600;
+                font-size: 0.9rem;
+            }
+
+            .metric-label {
+                position: absolute;
+                bottom: -30px;
+                left: 0;
+                transform: none;
+                width: auto;
+                text-align: left;
+                font-size: 0.9rem;
+                font-weight: 500;
+                line-height: 1.2;
+                color: #000;
+                white-space: nowrap;
+            }
+
+            .results-highlights {
+                padding: 1rem;
+                margin-bottom: 1.5rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .results-highlights li {
+                font-size: 0.95rem;
+                padding: 0.5rem 0.5rem 0.5rem 2rem;
+                white-space: normal;
+                word-wrap: break-word;
+            }
+
+            .results-highlights li::before {
+                left: 0.5rem;
+                font-size: 1rem;
+            }
+
+            .checkmark-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            .metrics-section {
+                padding: 1rem;
+                width: 100%;
+                box-sizing: border-box;
+                overflow: hidden;
+            }
+
+            .metrics-section h2 {
+                margin-bottom: 1.5rem;
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="assets/logo.png" alt="Logo de Sutilde, especialistas en automatización de procesos" class="logo-img">
+            </div>
+            <nav class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="blog.html" target="_blank" rel="noopener noreferrer" class="blog-link"><i class="fas fa-newspaper"></i> Lo último en I.A.</a></li>
+                    <li><a href="https://automation-consultant.vercel.app/" target="_blank" rel="noopener noreferrer" class="blog-link"><i class="fas fa-clipboard-check"></i> Diagnóstico de Automatización Gratis</a></li>
+                    <li><button class="contact-button" onclick="openConsultaModal()">Contáctanos</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"db5f796d448d7862348e15ceb822699c"})});</script>
+    <section class="hero">
+        <div class="particles-container"></div>
+        <div class="hero-content">
+            <h1>Reduce gastos y escala tu operación.</h1>
+            <p>Reducción de errores y ahorro de hasta 60 horas al mes.<br>Automatización + IA aplicada a tus procesos clave.</p>
+            <a href="https://calendly.com/jorgeporras/10-minutos-con-jorge-porras?back=1&month=2025-03" target="_blank" class="cta-button">Agenda tu demo personalizado</a>
+        </div>
+    </section>
+
+    <section class="intro-animation">
+        <div class="logo-container">
+            <img src="assets/logo.png" alt="Sutilde Logo" class="intro-logo">
+        </div>
+        <div class="grid-transition">
+            <div class="grid">
+                <!-- Grid items will be generated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <section class="animations-showcase">
+        <div class="animated-content">
+            <div class="lines-animation">
+                <svg viewBox="0 0 1000 400" preserveAspectRatio="none">
+                    <path d="M0,200 C250,300 750,100 1000,200" fill="none" stroke="var(--primary-color)" stroke-width="2"/>
+                    <path d="M0,200 C250,100 750,300 1000,200" fill="none" stroke="var(--secondary-color)" stroke-width="2"/>
+                </svg>
+            </div>
+            <div class="typing-container">
+                <div class="typing-text">¿Tus equipos <span class="highlight">pierden horas</span> en tareas repetitivas?</div>
+                <div class="typing-text">¿No se <span class="highlight">logran los objetivos</span> a tiempo?</div>
+                <div class="typing-text">¿Quieres <span class="highlight">integrar I.A.</span> a tus procesos de manera eficiente?</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section">
+        <div class="process-container">
+            <div class="timeline-header">
+                <div class="timeline-step">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="time-circle manual">
+                                    <span class="days">10+</span>
+                                    <span class="unit">días</span>
+                                </div>
+                                <h3>Proceso Manual</h3>
+                                <p class="step-description">Flujo tradicional con múltiples revisiones manuales.<br><strong>Ejemplo:</strong> Revisión de 100+ documentos uno por uno.</p>
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Proceso Manual</h3>
+                                <p class="technical-description">El flujo de trabajo depende de intervención humana constante, resultando en procesos lentos, propensos a errores y costosos en recursos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-step">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="time-circle semi">
+                                    <span class="days">6</span>
+                                    <span class="unit">días</span>
+                                </div>
+                                <h3>Semi-Auto</h3>
+                                <p class="step-description">Automatización básica con macros y scripts.<br><strong>Ejemplo:</strong> Extracción automática de datos de facturas con revisión manual.</p>
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Semi-Auto</h3>
+                                <p class="technical-description">Implementación de herramientas tecnológicas para agilizar tareas repetitivas, manteniendo supervisión humana para ajustes y control de calidad.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-step">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="time-circle ai">
+                                    <span class="days">2</span>
+                                    <span class="unit">días</span>
+                                </div>
+                                <h3>IA Asistida</h3>
+                                <p class="step-description">Análisis inteligente con supervisión humana.<br><strong>Ejemplo:</strong> Clasificación automática con revisión final.</p>
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>IA Asistida</h3>
+                                <p class="technical-description">La IA optimiza los procesos reduciendo significativamente tiempos y errores, con supervisión humana mínima para ajustes finales.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-step">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="time-circle apa">
+                                    <span class="days">1</span>
+                                    <span class="unit">hora</span>
+                                </div>
+                                <h3>IA Total</h3>
+                                <p class="step-description">Automatización total con IA avanzada.<br><strong>Ejemplo:</strong> Procesamiento y análisis en tiempo real de miles de documentos.</p>
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>IA Total</h3>
+                                <p class="technical-description">Máxima eficiencia mediante IA avanzada, con procesos completamente automatizados que reducen drásticamente tiempo y costos operativos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="servicios" class="services">
+        <h2>Nuestros Servicios</h2>
+        <div class="services-grid">
+            <div class="service-card" data-service="automation">
+                <div class="service-icon">
+                    <svg class="automation-icon" viewBox="0 0 100 100">
+                        <defs>
+                            <linearGradient id="gradientAuto" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#B066FF;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#FF3366;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <rect x="2" y="35" width="28" height="28" rx="4" fill="url(#gradientAuto)" />
+                        <rect x="36" y="35" width="28" height="28" rx="4" fill="url(#gradientAuto)" />
+                        <rect x="70" y="35" width="28" height="28" rx="4" fill="url(#gradientAuto)" />
+                    </svg>
+                </div>
+                <h3>Automatización de Procesos</h3>
+                <p>Reducimos el tiempo de tus tareas en un 80% con soluciones personalizadas que se adaptan perfectamente a tu flujo de trabajo</p>
+            </div>
+            <div class="service-card" data-service="ai">
+                <div class="service-icon">
+                    <svg class="brain-icon" viewBox="0 0 100 100">
+                        <defs>
+                            <linearGradient id="gradientBrain" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#B066FF;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#FF3366;stop-opacity:1" />
+                            </linearGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <!-- Círculo central -->
+                        <circle class="central-node" cx="50" cy="50" r="8" fill="url(#gradientBrain)" filter="url(#glow)"/>
+                        
+                        <!-- Pulsos de energía -->
+                        <g class="energy-pulses">
+                            <circle class="pulse" cx="50" cy="50" r="12" fill="none" stroke="url(#gradientBrain)" stroke-width="2"/>
+                            <circle class="pulse" cx="50" cy="50" r="20" fill="none" stroke="url(#gradientBrain)" stroke-width="1.5"/>
+                            <circle class="pulse" cx="50" cy="50" r="28" fill="none" stroke="url(#gradientBrain)" stroke-width="1"/>
+                        </g>
+                    </svg>
+                </div>
+                <h3>Agentes Autónomos Especializados</h3>
+                <p>Delegamos tareas complejas a agentes de IA que aprenden y mejoran continuamente, reduciendo errores en un 95%</p>
+            </div>
+            <div class="service-card" data-service="integration">
+                <div class="service-icon">
+                    <svg class="integration-icon" viewBox="0 0 100 100">
+                        <!-- Círculo exterior -->
+                        <circle class="outer-ring" cx="50" cy="50" r="40" fill="none" stroke="url(#gradient3)" stroke-width="2"/>
+                        <!-- Líneas de conexión -->
+                        <path class="connect-line-1" d="M30,30 L70,70" stroke="url(#gradient4)" stroke-width="2" fill="none"/>
+                        <path class="connect-line-2" d="M30,70 L70,30" stroke="url(#gradient4)" stroke-width="2" fill="none"/>
+                        <!-- Nodos -->
+                        <circle class="node" cx="30" cy="30" r="6" fill="url(#gradient3)"/>
+                        <circle class="node" cx="70" cy="70" r="6" fill="url(#gradient4)"/>
+                        <circle class="node" cx="30" cy="70" r="6" fill="url(#gradient3)"/>
+                        <circle class="node" cx="70" cy="30" r="6" fill="url(#gradient4)"/>
+                        <!-- Círculo central -->
+                        <circle class="center-circle" cx="50" cy="50" r="15" fill="none" stroke="url(#gradient4)" stroke-width="2"/>
+                        <defs>
+                            <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:var(--secondary-color)"/>
+                                <stop offset="100%" style="stop-color:var(--gradient-end)"/>
+                            </linearGradient>
+                            <linearGradient id="gradient4" x1="100%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:var(--primary-color)"/>
+                                <stop offset="100%" style="stop-color:var(--secondary-color)"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <h3>Integración de Sistemas</h3>
+                <p>Conectamos todas tus herramientas en una solución unificada, eliminando la duplicidad de trabajo y mejorando la eficiencia</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <h2 class="section-title">¿Cómo trabajamos?</h2>
+        <div class="process-steps">
+            <div class="process-step" data-step="1">
+                <div class="step-icon">
+                    <svg class="diagnostic-icon" viewBox="0 0 100 100">
+                        <defs>
+                            <linearGradient id="gradientDiagnostic" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#B066FF;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#FF3366;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle class="pulse-circle" cx="50" cy="50" r="80" fill="none" stroke="url(#gradientDiagnostic)" stroke-width="2"/>
+                        <path class="check-path" d="M30,50 L45,65 L70,35" fill="none" stroke="url(#gradientDiagnostic)" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="step-content">
+                    <h3>Diagnóstico gratuito</h3>
+                    <p>Analizamos tus procesos actuales y detectamos puntos de automatización.</p>
+                </div>
+            </div>
+            <div class="process-step" data-step="2">
+                <div class="step-icon">
+                    <svg class="design-icon" viewBox="0 0 100 100">
+                        <defs>
+                            <linearGradient id="gradientDesign" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#B066FF;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#FF3366;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <rect class="design-square" x="20" y="20" width="60" height="60" rx="8" fill="none" stroke="url(#gradientDesign)" stroke-width="2"/>
+                        <path class="design-path" d="M35,50 L50,35 L65,50 L50,65 Z" fill="none" stroke="url(#gradientDesign)" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="step-content">
+                    <h3>Diseño personalizado</h3>
+                    <p>Creamos flujos a medida con herramientas compatibles con tus procesos y sistemas.</p>
+                </div>
+            </div>
+            <div class="process-step" data-step="3">
+                <div class="step-icon">
+                    <svg class="implementation-icon" viewBox="0 0 100 100">
+                        <defs>
+                            <linearGradient id="gradientImplementation" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#B066FF;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#FF3366;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle class="implementation-circle" cx="50" cy="50" r="80" fill="none" stroke="url(#gradientImplementation)" stroke-width="2"/>
+                        <path class="implementation-path" d="M50,20 L50,80 M20,50 L80,50" stroke="url(#gradientImplementation)" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="step-content">
+                    <h3>Implementación rápida</h3>
+                    <p>Todo funcionando en menos de 30 días, sin frenar tu operación.</p>
+                </div>
+            </div>
+            <div class="process-step" data-step="4">
+                <div class="step-icon">
+                    <svg class="improvement-icon" viewBox="0 0 100 100">
+                        <defs>
+                            <linearGradient id="gradientImprovement" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#B066FF;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#FF3366;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path class="improvement-path" d="M50,25 L75,75 L25,75 Z" fill="none" stroke="url(#gradientImprovement)" stroke-width="2"/>
+                        <circle class="improvement-circle" cx="50" cy="50" r="80" fill="none" stroke="url(#gradientImprovement)" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="step-content">
+                    <h3>Mejora continua</h3>
+                    <p>Te acompañamos para escalar, ajustar y evolucionar tus automatizaciones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="case-study">
+        <div class="case-study-content">
+            <div class="case-study-header">
+<h2>
+  <span style="color: black;">Caso de Éxito:</span> 
+  <span style="color: inherit;"> Cadena de Gimnasios</span>
+</h2>
+                <div class="case-study-intro">
+                    <p>Una <strong>cadena de gimnasios</strong> enfrentaba el desafío de <strong>escalar sus operaciones</strong> sin aumentar su personal administrativo. Necesitaban una <strong>solución integral</strong> que les permitiera <strong>automatizar procesos</strong> y mejorar la <strong>eficiencia operativa</strong>.</p>
+                </div>
+                                <linearGradient id="gradientImpact" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#B066FF"/>
+                                    <stop offset="100%" style="stop-color:#FF3366"/>
+                                </linearGradient>
+                            </defs>
+                            <circle class="impact-circle" cx="50" cy="50" r="30" 
+                                fill="none" stroke="url(#gradientImpact)" stroke-width="2"/>
+                            <path class="impact-arrow" d="M50,30 L50,70 M40,40 L50,30 L60,40" 
+                                fill="none" stroke="url(#gradientImpact)" stroke-width="2"/>
+
+            <div class="metrics-section">
+                <h2>
+                    <svg class="checkmark-icon" viewBox="0 0 50 50">
+                        <rect class="checkmark-box" x="5" y="5" width="40" height="40" rx="8" fill="none" stroke="#B066FF" stroke-width="2"/>
+                        <path class="checkmark-path" d="M15,25 L22,32 L35,18" fill="none" stroke="#B066FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Resultados tras implementación
+                </h2>
+                <div class="chart-container">
+                  <div class="left-panel">
+                    <ul class="results-highlights">
+                        <li>Reducción del <strong>80%</strong> en </strong>tiempo</strong> de procesos administrativos</li>
+                        <li><strong>Eliminación de errores</strong> en facturación</li>
+                        <li>Capacidad de <strong>escalar sin aumentar personal</strong></li>
+                        <li><strong>Duplicación de ingresos</strong> en 6 meses</li>
+                    </ul>
+                 </div>
+
+                 <div class="right-panel">
+                    <div class="metric-bar" data-value="10">
+                        <div class="metric-value">10%</div>
+                        <div class="metric-label">Tiempo de Procesos</div>
+                     </div>
+                    <div class="metric-bar" data-value="95">
+                        <div class="metric-value">95%</div>
+                        <div class="metric-label">Precisión Facturas</div>
+                    </div>
+                    <div class="metric-bar" data-value="80">
+                        <div class="metric-value">80%</div>
+                        <div class="metric-label">Eficiencia Personal</div>
+                    </div>
+                    <div class="metric-bar" data-value="200">
+                        <div class="metric-value">200%</div>
+                        <div class="metric-label">Incremento de Ingresos</div>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </section>
+    <section class="testimonials">
+        <div class="testimonial-slider">
+            <div class="testimonial-card active">
+                <p>"Las automatizaciones implementadas con Sutilde duplicaron nuestros ingresos en un año, manteniendo los gastos al mínimo. Siempre con la mejor comunicación."</p>
+                <cite>- Abril Medina, Directora de Al Gym 24/7</cite>
+            </div>
+            <div class="testimonial-card">
+                <p>"Gracias a la automatización, liberamos al equipo de operaciones para enfocarse en clientes. Fue clave para escalar."</p>
+                <cite>- Gerente de Operaciones, empresa de tecnología B2B</cite>
+            </div>
+            <div class="testimonial-card">
+                <p>"Antes teníamos un cuello de botella en facturación. Con IA y automatización, ahora procesamos todo en tiempo real."</p>
+                <cite>- CFO, industria logística</cite>
+            </div>
+        </div>
+    </section>
+    <section class="faqs">
+        <h2>Preguntas Frecuentes</h2>
+
+        <div class="faq-item">
+            <h3>¿Cuánto cuesta?</h3>
+            <p>Todos los paquetes son personalizados según el alcance y complejidad. El diagnóstico inicial es gratuito.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>¿Qué herramientas usan?</h3>
+            <p>Make, Zapier, Power Automate, APIs personalizadas, Python, entre otras. Adaptamos la tecnología a tus herramientas.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>¿Es compatible con mi ERP o CRM?</h3>
+            <p>Sí. Nuestras soluciones se integran con sistemas como Salesforce, SAP, Hubspot, Zoho, y más.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>¿Esto es escalable?</h3>
+            <p>Absolutamente. Nuestras soluciones están pensadas para crecer contigo y adaptarse a tus necesidades futuras.</p>
+        </div>
+    </section>
+
+    <section id="contacto" class="contact">
+        <h2>¿Listo para Transformar tu Negocio?</h2>
+        <p class="contact-subtitle">Agenda ahora y recibe un diagnóstico gratuito en menos de 48h. Sin compromiso.</p>
+        <div class="contact-form-container">
+            <button id="consultaBtn" class="cta-button contact-redirect-button">
+                Agenda tu consulta gratuita
+            </button>
+        </div>
+    </section>
+
+    <!-- Modal de Consulta -->
+    <div id="consultaModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Agenda tu Consulta Gratuita</h2>
+            <div class="modal-body">
+                <iframe src="https://forms.app/form/66c4dc3c9f387584739fc828?draftId=5728c1f8b852ed" frameborder="0" style="width:100%; height:600px;"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Sutilde</h4>
+                <p>Recuperar tu tiempo. Agiliza el proceso.</p>
+            </div>
+            <div class="footer-section">
+                <h4 class="clickable" onclick="openConsultaModal()">Contacto</h4>
+                <p>Email: hola@sutilde.com</p>
+                <p>Tel: (614) 427-3301</p>
+            </div>
+            <div class="footer-section social-links">
+                <a href="https://www.linkedin.com/company/3082853/admin/dashboard/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/SutildeCo" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.facebook.com/Sutilde" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/sutilde/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@SutildeVGL" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.tiktok.com/@sutildecomunicacion" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sutilde. Todos los derechos reservados.</p>
+            <button id="privacyBtn" class="privacy-btn">Aviso de Privacidad</button>
+        </div>
+    </footer>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/526144273301" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Modal de Aviso de Privacidad -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>AVISO DE PRIVACIDAD</h2>
+            <div class="privacy-content">
+                <p>SUTILDE, S.A.P.I. de C.V. (en adelante "SUTILDE") se compromete a proteger la privacidad de sus usuarios. Este Aviso de Privacidad se emite en cumplimiento de los artículos 15 y 16 de la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP) y su Reglamento, para informar sobre el uso y manejo de los datos personales que recopilamos.</p>
+
+                <h3>I. Identidad y domicilio del responsable</h3>
+                <p>SUTILDE, S.A.P.I. de C.V. es responsable del tratamiento de sus datos personales. Nuestro domicilio fiscal es:<br>
+                Calle Río Coyame 2309, Colonia Junta de los Ríos, Chihuahua, Chihuahua, C.P. 31300.<br>
+                Para cualquier consulta relacionada con este Aviso de Privacidad, puede contactarnos al correo electrónico: hola@sutilde.com.</p>
+
+                <h3>II. Datos personales que recopilamos</h3>
+                <p>Recabamos las siguientes categorías de datos personales:</p>
+                <ul>
+                    <li>Datos de identificación: Nombre completo, correo electrónico, número telefónico.</li>
+                    <li>Datos profesionales: Cargo, empresa, experiencia laboral.</li>
+                    <li>Datos financieros: Solo en caso de ser necesarios para la prestación de servicios.</li>
+                </ul>
+                <p>No recabamos datos sensibles.</p>
+
+                <h3>III. Finalidades del tratamiento de datos</h3>
+                <p>Sus datos personales serán tratados para los siguientes fines:</p>
+                
+                <p><strong>Finalidades primarias:</strong></p>
+                <ul>
+                    <li>Proveer servicios de video profesional, marketing, automatizaciones y producción cinematográfica.</li>
+                    <li>Atender consultas y solicitudes realizadas a través de nuestra página web.</li>
+                    <li>Gestionar procesos internos para optimizar la prestación de servicios.</li>
+                </ul>
+
+                <p><strong>Finalidades secundarias:</strong></p>
+                <ul>
+                    <li>Enviar promociones, novedades y actualizaciones relacionadas con nuestros servicios.</li>
+                    <li>Realizar encuestas de satisfacción y análisis para mejorar nuestros productos.</li>
+                </ul>
+                <p>Usted puede negar su consentimiento para las finalidades secundarias enviando un correo a hola@sutilde.com.</p>
+
+                <h3>IV. Opciones y medios para limitar el uso o divulgación de los datos</h3>
+                <p>Puede limitar el uso o divulgación de sus datos inscribiéndose en nuestra lista de exclusión, enviando su solicitud al correo electrónico hola@sutilde.com. Esto evitará que reciba mensajes promocionales no deseados.</p>
+
+                <h3>V. Derechos ARCO (Acceso, Rectificación, Cancelación y Oposición)</h3>
+                <p>Usted tiene derecho a acceder, rectificar, cancelar u oponerse al tratamiento de sus datos personales. Para ejercer estos derechos, envíe su solicitud al correo hola@sutilde.com, incluyendo:</p>
+                <ul>
+                    <li>Su nombre completo y datos de contacto.</li>
+                    <li>Una descripción clara de los derechos que desea ejercer.</li>
+                    <li>Copia de una identificación oficial.</li>
+                </ul>
+                <p>SUTILDE responderá su solicitud en un plazo de 20 días hábiles y, en su caso, implementará la acción correspondiente dentro de los 15 días hábiles siguientes.</p>
+
+                <h3>VI. Revocación del consentimiento</h3>
+                <p>Puede revocar el consentimiento que nos haya otorgado para el tratamiento de sus datos personales enviando una solicitud al correo electrónico hola@sutilde.com. Su solicitud será procesada conforme a los plazos establecidos en la ley.</p>
+
+                <h3>VII. Transferencias de datos personales</h3>
+                <p>Sus datos personales no serán transferidos a terceros sin su consentimiento, salvo en los casos previstos por el artículo 37 de la LFPDPPP, incluyendo:</p>
+                <ul>
+                    <li>Cuando sea necesario para cumplir con una relación jurídica entre usted y SUTILDE.</li>
+                    <li>Cuando lo requiera una autoridad competente en ejercicio de sus funciones.</li>
+                </ul>
+                <p>Si en el futuro se realizaran transferencias adicionales, se le informará para obtener su consentimiento.</p>
+
+                <h3>VIII. Uso de cookies y tecnologías similares</h3>
+                <p>Nuestro sitio web utiliza cookies y tecnologías similares para recopilar información sobre su interacción con nuestros servicios, como dirección IP, tipo de navegador y páginas visitadas. Puede desactivar estas tecnologías configurando su navegador.</p>
+
+                <h3>IX. Medidas de seguridad</h3>
+                <p>SUTILDE implementa medidas técnicas, administrativas y físicas para proteger sus datos personales contra daño, pérdida, alteración, acceso no autorizado o tratamiento indebido. Entre estas medidas se incluyen el cifrado, control de accesos y auditorías regulares.</p>
+
+                <h3>X. Cambios al Aviso de Privacidad</h3>
+                <p>SUTILDE se reserva el derecho de actualizar este Aviso de Privacidad en cualquier momento. Cualquier cambio será publicado en nuestra página web en la sección "Aviso de Privacidad". Además, notificaremos a los usuarios registrados por correo electrónico. Le recomendamos revisar periódicamente este Aviso de Privacidad.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Ocultar la página hasta que se cargue
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 100);
+        });
+
+        // Modal de Privacidad
+        const privacyModal = document.getElementById("privacyModal");
+        const privacyBtn = document.getElementById("privacyBtn");
+        const privacyClose = privacyModal.querySelector(".close");
+
+        privacyBtn.onclick = function() {
+            privacyModal.style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
+
+        privacyClose.onclick = function() {
+            privacyModal.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        // Modal de Consulta
+        const consultaModal = document.getElementById("consultaModal");
+        const consultaBtn = document.getElementById("consultaBtn");
+        const consultaClose = consultaModal.querySelector(".close");
+
+        function openConsultaModal() {
+            consultaModal.style.display = "block";
+            document.body.style.overflow = "hidden";
+            anime({
+                targets: consultaModal,
+                opacity: [0, 1],
+                scale: [0.9, 1],
+                duration: 300,
+                easing: 'easeOutQuad'
+            });
+        }
+
+        function closeConsultaModal() {
+            anime({
+                targets: consultaModal,
+                opacity: [1, 0],
+                scale: [1, 0.9],
+                duration: 200,
+                easing: 'easeInQuad',
+                complete: function() {
+                    consultaModal.style.display = "none";
+                    document.body.style.overflow = "auto";
+                }
+            });
+        }
+
+        consultaBtn.onclick = openConsultaModal;
+        consultaClose.onclick = closeConsultaModal;
+
+        // Cerrar modales al hacer clic fuera
+        window.onclick = function(event) {
+            if (event.target == privacyModal) {
+                privacyModal.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+            if (event.target == consultaModal) {
+                closeConsultaModal();
+            }
+        }
+
+        // Añadir evento de clic para redirigir a servicios
+        document.querySelector('.typing-container').addEventListener('click', function() {
+            document.getElementById('servicios').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, { threshold: 0 });
+
+            document.querySelectorAll('.metric-bar').forEach(bar => {
+                observer.observe(bar);
+            });
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="js/animations.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let isMobile = window.innerWidth <= 768;
+            
+            // Función para actualizar la visualización basada en el tamaño de la ventana
+            function updateBarDisplay() {
+                const newIsMobile = window.innerWidth <= 768;
+                
+                // Solo actualizar si cambia entre móvil y desktop
+                if (newIsMobile !== isMobile) {
+                    isMobile = newIsMobile;
+                    
+                    // Restablecer y volver a inicializar las barras
+                    document.querySelectorAll('.metric-bar').forEach(bar => {
+                        bar.classList.remove('animate');
+                        
+                        if (isMobile) {
+                            bar.style.height = '40px';
+                            if (bar.dataset.value !== "200") {
+                                bar.style.width = '0%';
+                            }
+                        } else {
+                            bar.style.width = '60px';
+                            bar.style.height = '0%';
+                        }
+                        
+                        // Volver a animar si está visible
+                        if (isElementInViewport(bar)) {
+                            animateBar(bar);
+                        }
+                    });
+                }
+            }
+            
+            // Función para verificar si un elemento está en el viewport
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.bottom >= 0
+                );
+            }
+            
+            // Función para animar una barra
+            function animateBar(bar) {
+                const value = parseFloat(bar.dataset.value);
+                
+                if (isMobile) {
+                    if (value === 200) {
+                        bar.style.width = '100%';
+                    } else if (value === 10) {
+                        bar.style.width = '10%';
+                    } else if (value === 95) {
+                        bar.style.width = '95%';
+                    } else if (value === 80) {
+                        bar.style.width = '80%';
+                    }
+                } else {
+                    requestAnimationFrame(() => {
+                        bar.classList.add('animate');
+                    });
+                }
+            }
+            
+            // Configurar el IntersectionObserver para las barras métricas
+            const metricsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateBar(entry.target);
+                        // Dejar de observar este elemento
+                        metricsObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.5
+            });
+
+            // Inicializar todas las barras métricas
+            document.querySelectorAll('.metric-bar').forEach(bar => {
+                if (!isMobile) {
+                    // En desktop, asegurar que la altura inicial es 0
+                    bar.style.height = '0%';
+                } else {
+                    // En móvil, el ancho inicial es el mínimo
+                    if (bar.dataset.value !== "200") {
+                        bar.style.width = '0%';
+                    }
+                }
+                // Comenzar a observar la barra
+                metricsObserver.observe(bar);
+            });
+            
+            // Añadir listener para el cambio de tamaño de la ventana
+            window.addEventListener('resize', updateBarDisplay);
+        });
+    </script>
+</body>
+</html>

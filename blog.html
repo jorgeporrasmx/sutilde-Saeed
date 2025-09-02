@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Sutilde</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .blog-header {
+            background: linear-gradient(135deg, #f8f7ff 0%, #f0e7ff 100%);
+            padding: 10rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: -2rem;
+        }
+
+        .blog-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('assets/blog-header.jpg') center/cover;
+            opacity: 0.1;
+        }
+
+        .blog-header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .blog-header p {
+            font-size: 1.25rem;
+            color: var(--light-text);
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-category {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(147, 51, 234, 0.1);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .blog-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--light-text);
+            font-size: 0.875rem;
+        }
+
+        .blog-meta i {
+            margin-right: 0.5rem;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: gap 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 0.75rem;
+        }
+
+        @media (max-width: 768px) {
+            .blog-header {
+                padding: 6rem 1rem 3rem;
+            }
+
+            .blog-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .blog-grid {
+                padding: 2rem 1rem;
+            }
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .automation-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .automation-link:hover {
+            color: var(--primary-color);
+        }
+
+        .contact-button {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(147, 51, 234, 0.2);
+        }
+
+        .logo-img {
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .logo-img {
+            transform: scale(1.05);
+        }
+
+        .logo-img.rotate {
+            animation: rotate360 0.5s ease;
+        }
+
+        @keyframes rotate360 {
+            from {
+                transform: rotateY(0deg);
+            }
+            to {
+                transform: rotateY(360deg);
+            }
+        }
+
+        /* Animación de ondas en el footer */
+        .lines-animation {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            overflow: hidden;
+            opacity: 0.4;
+        }
+
+        .lines-animation svg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .wave {
+            animation: drawWave 12s linear infinite;
+            fill: none;
+            stroke-width: 1;
+            stroke-dasharray: 1500;
+            stroke-dashoffset: 1500;
+            opacity: 0;
+        }
+
+        .wave-1 {
+            stroke: var(--primary-color);
+            animation-delay: 0s;
+        }
+
+        .wave-2 {
+            stroke: var(--secondary-color);
+            animation-delay: -3s;
+        }
+
+        .wave-3 {
+            stroke: var(--primary-color);
+            opacity: 0.3;
+            animation-delay: -6s;
+        }
+
+        .wave-4 {
+            stroke: var(--secondary-color);
+            opacity: 0.3;
+            animation-delay: -9s;
+        }
+
+        @keyframes drawWave {
+            0% {
+                stroke-dashoffset: 1500;
+                opacity: 0;
+                transform: translateX(-5%);
+            }
+            20% {
+                opacity: 0.5;
+            }
+            80% {
+                opacity: 0.3;
+            }
+            100% {
+                stroke-dashoffset: -1500;
+                opacity: 0;
+                transform: translateX(5%);
+            }
+        }
+
+        .footer {
+            position: relative;
+            background: var(--background);
+            padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-section h4 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section h4.clickable {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section h4.clickable:hover {
+            color: var(--primary-color);
+        }
+
+        .blog-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .blog-modal-content {
+            position: relative;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-modal-close {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .blog-modal-close:hover {
+            transform: rotate(90deg);
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .article-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
+
+        .article-content .blog-category {
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .article-content h1 {
+            font-size: 2.5rem;
+            margin: 0.5rem 0 1rem;
+            color: var(--text-color);
+            line-height: 1.2;
+        }
+
+        .article-content h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: var(--text-color);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        .article-meta i {
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .blog-modal-content {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            .article-content {
+                font-size: 1rem;
+            }
+
+            .article-content h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo" onclick="handleLogoClick(event)">
+                <img src="assets/logo.png" alt="Sutilde Logo" class="logo-img">
+            </a>
+            <nav class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="automation-link">Automatización</a></li>
+                    <li><button class="contact-button" onclick="openConsultaModal()">Contáctanos</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="blog-header">
+        <h1>Blog Sutilde</h1>
+        <p>Descubre las últimas tendencias en automatización, IA y optimización de procesos empresariales</p>
+    </section>
+
+    <main class="blog-grid">
+        <div style="text-align: center; padding: 2rem; color: var(--light-text);">
+            <p>Cargando artículos...</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="lines-animation">
+            <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+                <path class="wave wave-1" d="M0,30 C300,10 600,50 1200,30"/>
+                <path class="wave wave-2" d="M0,30 C300,50 600,10 1200,30"/>
+                <path class="wave wave-3" d="M0,30 C200,15 500,45 1200,30"/>
+                <path class="wave wave-4" d="M0,30 C400,45 700,15 1200,30"/>
+            </svg>
+        </div>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Sutilde</h4>
+                <p>Recuperar tu tiempo. Agiliza el proceso.</p>
+            </div>
+            <div class="footer-section">
+                <h4 class="clickable" onclick="openConsultaModal()">Contacto</h4>
+                <p>Email: hola@sutilde.com</p>
+                <p>Tel: (614) 427-3301</p>
+            </div>
+            <div class="footer-section social-links">
+                <a href="https://www.linkedin.com/company/3082853/admin/dashboard/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/SutildeCo" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.facebook.com/Sutilde" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/sutilde/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@SutildeVGL" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.tiktok.com/@sutildecomunicacion" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sutilde. Todos los derechos reservados.</p>
+            <button id="privacyBtn" class="privacy-btn">Aviso de Privacidad</button>
+        </div>
+    </footer>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/526144273301" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Modal de Aviso de Privacidad -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>AVISO DE PRIVACIDAD</h2>
+            <div class="privacy-content">
+                <!-- Contenido del aviso de privacidad -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Consulta -->
+    <div id="consultaModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Agenda tu Consulta Gratuita</h2>
+            <div class="modal-body">
+                <iframe src="https://forms.app/form/66c4dc3c9f387584739fc828?draftId=5728c1f8b852ed" frameborder="0" style="width:100%; height:600px;"></iframe>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script>
+        // Modal functionality
+        const modal = document.getElementById("privacyModal");
+        const btn = document.getElementById("privacyBtn");
+        const span = document.getElementsByClassName("close")[0];
+        const logoImg = document.querySelector('.logo-img');
+
+        // Logo click animation with navigation
+        function handleLogoClick(e) {
+            e.preventDefault();
+            const logoImg = e.currentTarget.querySelector('.logo-img');
+            logoImg.classList.add('rotate');
+            
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 500);
+        }
+
+        // Modal de Consulta
+        const consultaModal = document.getElementById("consultaModal");
+        const consultaClose = consultaModal.querySelector(".close");
+
+        function openConsultaModal() {
+            consultaModal.style.display = "block";
+            document.body.style.overflow = "hidden";
+            anime({
+                targets: consultaModal,
+                opacity: [0, 1],
+                scale: [0.9, 1],
+                duration: 300,
+                easing: 'easeOutQuad'
+            });
+        }
+
+        function closeConsultaModal() {
+            anime({
+                targets: consultaModal,
+                opacity: [1, 0],
+                scale: [1, 0.9],
+                duration: 200,
+                easing: 'easeInQuad',
+                complete: function() {
+                    consultaModal.style.display = "none";
+                    document.body.style.overflow = "auto";
+                }
+            });
+        }
+
+        consultaClose.onclick = closeConsultaModal;
+
+        btn.onclick = function() {
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+            if (event.target == consultaModal) {
+                closeConsultaModal();
+            }
+        }
+
+        // Modal de blog eliminado; contenido dinámico renderizado desde /api/articles
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script>
+        function loadScript(a) {
+          var b = document.getElementsByTagName("head")[0],
+              c = document.createElement("script");
+          c.type = "text/javascript";
+          c.src = "https://tracker.metricool.com/resources/be.js";
+          c.onreadystatechange = a;
+          c.onload = a;
+          b.appendChild(c);
+        }
+      
+        loadScript(function () {
+          beTracker.t({ hash: "db5f796d448d7862348e15ceb822699c" });
+        });
+      </script>
+    <script>
+        // Render blog cards dynamically from /api/articles
+        function loadArticles(retryCount = 0) {
+            var grid = document.querySelector('.blog-grid');
+            if (!grid) {
+                console.log('Blog grid not found');
+                return;
+            }
+            console.log('Fetching articles from /api/articles... (attempt ' + (retryCount + 1) + ')');
+            fetch('api/articles')
+                .then(function(r){ 
+                    console.log('Response status:', r.status);
+                    if (!r.ok) throw new Error('HTTP ' + r.status);
+                    return r.json(); 
+                })
+                .then(function(items){
+                    console.log('Articles received:', items);
+                    if (!Array.isArray(items) || items.length === 0) {
+                        grid.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--light-text);"><p>No se encontraron artículos</p></div>';
+                        return;
+                    }
+                    grid.innerHTML = '';
+                    items.forEach(function(item){
+                        console.log('Creating card for:', item.title);
+                        var article = document.createElement('article');
+                        article.className = 'blog-card';
+                        article.onclick = function(){ window.location.href = item.path; };
+
+                        var content = document.createElement('div');
+                        content.className = 'blog-content';
+
+                        if (item.category) {
+                            var cat = document.createElement('span');
+                            cat.className = 'blog-category';
+                            cat.textContent = item.category;
+                            content.appendChild(cat);
+                        }
+
+                        var h2 = document.createElement('h2');
+                        h2.className = 'blog-title';
+                        h2.textContent = item.title || item.file;
+                        content.appendChild(h2);
+
+                        if (item.excerpt) {
+                            var p = document.createElement('p');
+                            p.className = 'blog-excerpt';
+                            p.textContent = item.excerpt;
+                            content.appendChild(p);
+                        }
+
+                        var meta = document.createElement('div');
+                        meta.className = 'blog-meta';
+                        if (item.date) {
+                            var spanDate = document.createElement('span');
+                            spanDate.innerHTML = '<i class="far fa-calendar"></i> ' + item.date;
+                            meta.appendChild(spanDate);
+                        }
+                        content.appendChild(meta);
+
+                        var readMore = document.createElement('span');
+                        readMore.className = 'read-more';
+                        readMore.innerHTML = 'Leer más <i class="fas fa-arrow-right"></i>';
+                        content.appendChild(readMore);
+
+                        article.appendChild(content);
+                        grid.appendChild(article);
+                    });
+                })
+                .catch(function(err){ 
+                    console.error('Error fetching articles:', err);
+                    if (retryCount < 3) {
+                        console.log('Retrying in 2 seconds...');
+                        setTimeout(function() { loadArticles(retryCount + 1); }, 2000);
+                    } else {
+                        grid.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--light-text);"><p>Error al cargar los artículos. Por favor, recarga la página.</p></div>';
+                    }
+                });
+        }
+
+        // Test if fetch is available
+        if (typeof fetch === 'undefined') {
+            console.error('Fetch is not available in this browser');
+            document.querySelector('.blog-grid').innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--light-text);"><p>Tu navegador no soporta la carga dinámica de artículos.</p></div>';
+        } else {
+            // Try to load articles immediately and also on DOM ready
+            console.log('Fetch is available, attempting to load articles...');
+            loadArticles();
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('DOM loaded, starting to load articles...');
+                loadArticles();
+            });
+        }
+    </script>
+</body>
+</html> 
